@@ -5,10 +5,46 @@ import ToolingIcon from './icons/IconTooling.vue'
 import EcosystemIcon from './icons/IconEcosystem.vue'
 import CommunityIcon from './icons/IconCommunity.vue'
 import SupportIcon from './icons/IconSupport.vue'
+
+import * as THREE from '../../node_modules/three/build/three.module'
+const canvas2 = document.querySelector('.webgl')
+const scene2 = new THREE.Scene()
+
+const geometry = new THREE.BoxGeometry(1,1,1)
+const material = new THREE.MeshBasicMaterial({
+  color: 0x00ff00
+})
+const boxMesh = new THREE.Mesh(geometry, material)
+scene2.add(boxMesh)
+
+
+//boilerplate
+const sizes = {
+  width: window.innerWidth,
+  height: window.innerHeight
+}
+
+const camera2 = new THREE.PerspectiveCamera(75, sizes.width/sizes.height, 0.1, 100)
+camera2.position.set(0,1,2)
+scene2.add(camera2)
+
+const renderer2 = new THREE.WebGL1Renderer({
+  canvas: canvas2
+})
+
+renderer2.setSize(sizes.width, sizes.height)
+renderer2.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+renderer2.shadowMap.enabled = true
+renderer2.gammaOutput = 2
+renderer2.render(scene2, camera)
+document.body.appendChild( renderer2.domElement );
 </script>
 
+
 <template>
-  <WelcomeItem>
+  <div class="webgl"></div>
+  <!-- hiding all the boilerplate for this View....
+    <WelcomeItem>
     <template #icon>
       <DocumentationIcon />
     </template>
@@ -83,4 +119,5 @@ import SupportIcon from './icons/IconSupport.vue'
     us by
     <a href="https://vuejs.org/sponsor/" target="_blank" rel="noopener">becoming a sponsor</a>.
   </WelcomeItem>
+-->
 </template>
