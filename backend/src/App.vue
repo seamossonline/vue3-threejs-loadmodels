@@ -1,9 +1,7 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
-import * as THREE from '../node_modules/three'
-import { GLTFLoader } from '../node_modules/three/examples/jsm/loaders/GLTFLoader.js'
-const scene = new THREE.Scene();
+
 </script>
 
 <template>
@@ -30,7 +28,8 @@ header {
   margin: 0 auto 2rem;
 }
 
-@media (min-width: 1024px) {
+
+@media (min-width: 102px) {
   header {
     display: flex;
     place-items: center;
@@ -39,6 +38,10 @@ header {
 
   .logo {
     margin: 0 2rem 0 0;
+  }
+
+  canvas, renderer {
+    display: block;
   }
 
   header .wrapper {
